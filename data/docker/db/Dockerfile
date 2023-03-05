@@ -1,4 +1,4 @@
-FROM mariadb:10.6
+FROM mariadb:10.11
 
 MAINTAINER Vitaliy Syrydov <svyrydov.vitaliy@gmail.com>
 
