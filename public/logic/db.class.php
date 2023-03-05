@@ -81,7 +81,7 @@
         public function updatePost($id, $title, $content, $img) {
         $sql = "UPDATE posts SET title = ?, content = ?, img = ? WHERE id = ?";
         $stmt = $this->connect()->prepare($sql);
-        $stmt->execute([$title, $body, $author, $id]);
+        $stmt->execute([$title, $content, $img, $id]);
         }
     
         public function delPost($id) {

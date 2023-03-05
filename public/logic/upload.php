@@ -5,7 +5,7 @@ include 'db.class.php';
 $db= new DATEBASE();
 
 
-if (isset($_POST['new_post']))
+if (isset($_POST['delete']))
     $title = $_POST['title'];
     $body = $_POST['content'];
     $handler = fopen($_FILES['image']['tmp_name'], 'r');

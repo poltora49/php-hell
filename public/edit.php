@@ -1,6 +1,8 @@
 <?php
 
     include  (__DIR__.'/logic/db.class.php');
+    $db = new DATEBASE();
+    $post = $db->editPost(strval($_GET['id']));
 
 ?>
 
@@ -18,13 +20,23 @@
 <body>
 
    <div class="container mt-5">
-        <form method="POST" action="/logic/upload.php" enctype="multipart/form-data">
-            <input type="text" placeholder="Blog Title" class="form-control my-3 bg-dark text-white text-center" name="title">
-            <textarea name="content" class="form-control my-3 bg-dark text-white" cols="30" rows="10"></textarea>
-            <input type="file" name="image">
-            <button class="btn btn-dark" name="new_post">Add Post</button>
+        <form method="POST" action="/logic/edit.php" enctype="multipart/form-data">
+         <input type="text" hidden value='<?php echo $post['id']?>' name="id">
+            <input type="text" placeholder="Blog Title" class="form-control my-3 bg-dark text-white text-center" name="title"
+            value='<?php echo $post['title']?>'>
+            <textarea name="content" class="form-control my-3 bg-dark text-white" cols="30" rows="10"><?php echo $post['content']?></textarea>
+            <?php 
+                if ($post['img']){
+                echo '<h4>Old image:</h4>';
+                echo '<img src="data:image/jpeg;base64,'.base64_encode( $post['img'] ).'"/>';
+                echo '<h4>New image:</h4>';
+                echo '<input type="file" name="image">';
+                } else {
+                    echo '<input type="file" name="image">';
+                }
+           ?> 
+            <button class="btn btn-dark" name="edit_post">Save</button>
         </form>
-
    </div>
 
     <!-- Bootstrap JS -->

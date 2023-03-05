@@ -1,7 +1,7 @@
 <?php
     include  (__DIR__.'/logic/db.class.php');
     $db = new DATEBASE();
-     $post = $db->editPost(strval($_GET['id']));
+    $post = $db->editPost(strval($_GET['id']));
 
 ?>
 
@@ -31,9 +31,9 @@
                 <p><?php echo $post['content'];?></p>
 
                 <div class="d-flex mt-2 justify-content-center align-items-center">
-                    <a href="edit.php?id=<?php echo $q['id']?>" class="btn btn-light btn-sm" name="edit">Edit</a>
-                    <form method="POST">
-                        <input type="text" hidden value='<?php echo $q['id']?>' name="id">
+                    <a href="edit.php?id=<?php echo $post['id']?>" class="btn btn-light btn-sm" name="edit">Edit</a>
+                    <form method="POST" action="/logic/del.php">
+                        <input type="text" hidden value='<?php echo $post['id']?>' name="id">
                         <button class="btn btn-danger btn-sm ml-2" name="delete">Delete</button>
                     </form>
                 </div>
