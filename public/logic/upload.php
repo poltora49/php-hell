@@ -4,6 +4,7 @@ include 'db.class.php';
 
 $db= new DATEBASE();
 
+
 if (isset($_POST['new_post']))
     $title = $_POST['title'];
     $body = $_POST['content'];

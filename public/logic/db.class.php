@@ -55,7 +55,7 @@
                                 }
                             ?>
                             
-                            <a href="view.php?id_article=<?= $post['id'] ?>" class="btn btn-light">Read More <span class="text-danger">&rarr;</span></a>
+                            <a href="view.php?id=<?= $post['id'] ?>" class="btn btn-light">Read More <span class="text-danger">&rarr;</span></a>
                         </div>
                     </div>
                 </div>
