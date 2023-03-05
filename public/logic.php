@@ -64,51 +64,6 @@
             return $this;
         }
 
-        
-        public function fetchAll($callback = null) {
-            $params = array();
-            $row = array();
-            $meta = $this->query;
-            while ($field = $meta->fetch_field()) {
-                $params[] = &$row[$field->name];
-            }
-            call_user_func_array(array($this->query, 'bind_result'), $params);
-            $result = array();
-            while ($this->query->fetch()) {
-                $r = array();
-                foreach ($row as $key => $val) {
-                    $r[$key] = $val;
-                }
-                if ($callback != null && is_callable($callback)) {
-                    $value = call_user_func($callback, $r);
-                    if ($value == 'break') break;
-                } else {
-                    $result[] = $r;
-                }
-            }
-            $this->query->close();
-            $this->query_closed = TRUE;
-            return $result;
-        }
-
-        public function fetchArray() {
-            $params = array();
-            $row = array();
-            $meta = $this->query->result_metadata();
-            while ($field = $meta->fetch_field()) {
-                $params[] = &$row[$field->name];
-            }
-            call_user_func_array(array($this->query, 'bind_result'), $params);
-            $result = array();
-            while ($this->query->fetch()) {
-                foreach ($row as $key => $val) {
-                    $result[$key] = $val;
-                }
-            }
-            $this->query->close();
-            $this->query_closed = TRUE;
-            return $result;
-        }
 
         public function addPost($title, $content, $img){
             try{
@@ -123,7 +78,7 @@
         
         private function existsTable($dbname,$table){
             $sql = 'SHOW TABLES FROM ' . $dbname. ' LIKE "'. $table .'"';
-            if ($this ->query('SHOW TABLES FROM ' . $dbname. ' LIKE "'. $table .'"')->fetchArray()==0){
+            if ($this ->query('SHOW TABLES FROM ' . $dbname. ' LIKE "'. $table .'"')->fetchAll(PDO::FETCH_ASSOC)==0){
                 return true; 
             }
             else{
@@ -156,12 +111,6 @@
 
         public function close() {
             return $this->connection->close();
-        }
-        private function _gettype($var) {
-            if (is_string($var)) return 's';
-            if (is_float($var)) return 'd';
-            if (is_int($var)) return 'i';
-            return 'b';
         }
     }
     
