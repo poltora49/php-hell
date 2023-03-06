@@ -11,39 +11,32 @@ $db = new DATEBASE();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
     <title>Blog</title>
 </head>
 <body>
+    <?php
 
-    <div class="container mt-5">
-
-        <!-- Display any info -->
-        <!-- <?php if(isset($_REQUEST['info'])){ ?>
-            <?php if($_REQUEST['info'] == "added"){?>
-                <div class="alert alert-success" role="alert">
-                    Post has been added successfully
-                </div>
-            <?php }?>
-        <?php } ?> -->
-
+        include  (__DIR__.'/header.php');
+    ?>
+    <main class="container my-5">
         <!-- Create a new Post button -->
-        <div class="text-center">
+        <section class="text-center">
             <a href="create.php" class="btn btn-outline-dark">+ Create a new post</a>
-        </div>
+        </section>
 
         <!-- Display posts from database -->
-        <div class="row">
+        <section class="row justify-content-center">
             <?php $db->getPost()?>
-        </div>
+        </section>
        
-    </div>
+    </main>
 
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
 
 </body>
 </html>

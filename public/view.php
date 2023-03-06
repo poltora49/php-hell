@@ -12,39 +12,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
     <title>Blog</title>
 </head>
 <body>
+    <?php
+        include  (__DIR__.'/header.php');
+    ?>
+   <main class="container my-5">
 
-   <div class="container mt-5">
-
-
-            <div class="bg-dark p-5 rounded-lg text-white text-center">
-                <h1><?php echo $post['title'];?></h1>
+            <section class="post p-md-5 px-lg-5 mx-lg-5 rounded-lg text-center overflow-hidden">
+                <h1>
+                    <?php echo $post['title'];?>
+                </h1>
                 <?php 
                     if ($post['img']){
-                        echo '<img src="data:image/jpeg;base64,'.base64_encode( $post['img'] ).'"/>';
+                        echo '<img class="w-100" src="data:image/jpeg;base64,'.base64_encode( $post['img'] ).'"/>';
                     }
                 ?>
-                <p><?php echo $post['content'];?></p>
+                <p class='w-75 text-start'>
+                    <?php echo $post['content'];?>
+                </p>
 
-                <div class="d-flex mt-2 justify-content-center align-items-center">
-                    <a href="edit.php?id=<?php echo $post['id']?>" class="btn btn-light btn-sm" name="edit">Edit</a>
+                <div class="d-flex flex-row mt-2 justify-content-end align-items-end">
+                    <a href="edit.php?id=<?php echo $post['id']?>" class="btn btn-dark btn-sm mx-3" name="edit">Edit</a>
                     <form method="POST" action="/logic/del.php">
                         <input type="text" hidden value='<?php echo $post['id']?>' name="id">
-                        <button class="btn btn-danger btn-sm ml-2" name="delete">Delete</button>
+                        <button class="btn btn-danger btn-sm ml-2" name="delete">
+                            Delete
+                        </button>
                     </form>
                 </div>
 
-            </div>
-   </div>
+            </section>
+
+   </main>
 
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
 </body>
 </html>

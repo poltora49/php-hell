@@ -42,23 +42,21 @@
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             foreach($result as &$post) {
                 ?>
-                <div class="col-12 col-lg-4 d-flex justify-content-center">
-                    <div class="card text-white bg-dark mt-5" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title"><?= $post['title']?></h5>
-                            <p class="card-text"><?= (strlen($post['content'])<50) ? 
-                            mb_substr($post['content'], 0, 50, 'UTF-8') :  
-                            mb_substr($post['content'], 0, 50, 'UTF-8')."..."?></p>
-                            <?php 
-                                if ($post['img']){
-                                   echo '<img src="data:image/jpeg;base64,'.base64_encode( $post['img'] ).'"/>';
-                                }
-                            ?>
-                            
-                            <a href="view.php?id=<?= $post['id'] ?>" class="btn btn-light">Read More <span class="text-danger">&rarr;</span></a>
-                        </div>
+
+                <a class="card m-3 py-3 overflow-hidden" style="width: 30rem;" href="view.php?id=<?= $post['id'] ?>">
+                <?php 
+                    if ($post['img']){
+                        echo '<img class="card-img-top" src="data:image/jpeg;base64,'.base64_encode( $post['img'] ).'"/>';
+                    }
+                ?>
+                    <div class="card-body">
+                        <h5 class="card-title"><?= $post['title']?></h5>
+                        <p class="card-text"><?= (strlen($post['content'])<50) ? 
+                                mb_substr($post['content'], 0, 50, 'UTF-8') :  
+                                mb_substr($post['content'], 0, 50, 'UTF-8')."..."?></p>
+                        <p class="card-text"><small class="text-muted"><?= $post['created_at'] ?></small></p>
                     </div>
-                </div>
+                </a>
             <?php
             }
           }
