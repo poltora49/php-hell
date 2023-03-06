@@ -11,7 +11,6 @@ if (isset($_POST['new_post']))
     if($_FILES['image']['tmp_name']){
         $handler = fopen($_FILES['image']['tmp_name'], 'r');
         $img = fread($handler, filesize($_FILES['image']['tmp_name']));
-        echo 'есть';
     } else {
         $img=NULL;
     }
