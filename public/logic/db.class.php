@@ -77,9 +77,10 @@
         }
     
         public function updatePost($id, $title, $content, $img) {
-        $sql = "UPDATE posts SET title = ?, content = ?, img = ? WHERE id = ?";
+        $sql = "UPDATE posts SET title = ?, content = ?, img = ?, updated_at = ? WHERE id = ?";
         $stmt = $this->connect()->prepare($sql);
-        $stmt->execute([$title, $content, $img, $id]);
+        $updated = date("Y-m-d H:i:s");
+        $stmt->execute([$title, $content, $img, $updated, $id]);
         }
     
         public function delPost($id) {
